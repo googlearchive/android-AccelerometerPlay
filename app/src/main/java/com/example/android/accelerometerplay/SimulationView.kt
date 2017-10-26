@@ -20,8 +20,8 @@ class SimulationView(context: Context) : FrameLayout(context), SensorEventListen
     companion object {
         val NUM_PARTICLES = 5
         val ballDiameter = 0.006f
-        var mHorizontalBound : Float = 0.0f
-        var mVerticalBound : Float = 0.0f
+        var xBound: Float = 0.0f
+        var yBound: Float = 0.0f
     }
 
     private val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -73,8 +73,8 @@ class SimulationView(context: Context) : FrameLayout(context), SensorEventListen
         mXOrigin = (w - mDstWidth) * 0.5f
         mYOrigin = (h - mDstHeight) * 0.5f
 
-        mHorizontalBound = (w / mMetersToPixelsX - ballDiameter) * 0.5f
-        mVerticalBound = (h / mMetersToPixelsY - ballDiameter) * 0.5f
+        xBound = (w / mMetersToPixelsX - ballDiameter) * 0.5f
+        yBound = (h / mMetersToPixelsY - ballDiameter) * 0.5f
 
         for (i in mBalls.indices) {
             mBalls[i] = Particle(context)

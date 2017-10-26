@@ -8,8 +8,7 @@ class ParticleSystem(private var mBalls: Array<Particle>) {
     private var mLastT: Long = 0
 
     /*
-     * Update the position of each particle in the system using the
-     * Verlet integrator.
+     * Update the position of each particle in the system using the Verlet integrator.
      */
     private fun updatePositions(sx: Float, sy: Float, timestamp: Long) {
         if (mLastT != 0L) {
@@ -54,8 +53,7 @@ class ParticleSystem(private var mBalls: Array<Particle>) {
                     // Check for collisions
                     if (dd <= SimulationView.ballDiameter * SimulationView.ballDiameter) {
                         /*
-                         * add a little bit of entropy, after nothing is
-                         * perfect in the universe.
+                         * Add a little bit of entropy, after nothing is perfect in the universe.
                          */
                         dx += (Math.random().toFloat() - 0.5f) * 0.0001f
                         dy += (Math.random().toFloat() - 0.5f) * 0.0001f
@@ -72,8 +70,6 @@ class ParticleSystem(private var mBalls: Array<Particle>) {
                         more = true
                     }
                 }
-
-                curr.resolveCollisionWithBounds()
             }
             k++
         }

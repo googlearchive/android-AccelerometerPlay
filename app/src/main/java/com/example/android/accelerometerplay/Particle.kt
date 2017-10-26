@@ -11,8 +11,38 @@ import android.view.View
  */
 class Particle(context: Context) : View(context) {
 
+    /*
+     * Resolving constraints and collisions with the Verlet integrator
+     * can be very simple, we simply need to move a colliding or
+     * constrained particle in such way that the constraint is
+     * satisfied.
+     */
     var posX = Math.random().toFloat()
+        set(value) {
+            val xMax = SimulationView.xBound//0.031000065f
+            field = value
+            if (value >= xMax) {
+                field = xMax
+                mVelX = 0f
+            } else if (value <= -xMax) {
+                field = -xMax
+                mVelX = 0f
+            }
+        }
     var posY = Math.random().toFloat()
+        set(value) {
+            val yMax = SimulationView.yBound//0.053403694f
+            field = value
+            if (value >= yMax) {
+                field = yMax
+                mVelY = 0f
+            } else if (posY <= -yMax) {
+                field = -yMax
+                mVelY = 0f
+            }
+        }
+
+
     private var mVelX: Float = 0f
     private var mVelY: Float = 0f
 
@@ -28,34 +58,4 @@ class Particle(context: Context) : View(context) {
         mVelY += ay * dT
     }
 
-    /*
-     * Resolving constraints and collisions with the Verlet integrator
-     * can be very simple, we simply need to move a colliding or
-     * constrained particle in such way that the constraint is
-     * satisfied.
-     */
-    fun resolveCollisionWithBounds() {
-
-        val xMax = SimulationView.mHorizontalBound//0.031000065f
-        val yMax = SimulationView.mVerticalBound//0.053403694f
-
-        val xx = posX
-        val yy = posY
-
-        if (xx >= xMax) {
-            posX = xMax
-            mVelX = 0f
-        }
-        else if (xx <= -xMax) {
-            posX = -xMax
-            mVelX = 0f
-        }
-        if (yy >= yMax) {
-            posY = yMax
-            mVelY = 0f
-        } else if (yy <= -yMax) {
-            posY = -yMax
-            mVelY = 0f
-        }
-    }
 }
