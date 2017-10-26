@@ -1,3 +1,10 @@
 .idea
 *.iml
 *.un~
+.gradle
+/build
+app/build
+LICENCE
+local.properties
+ gradle/wrapper/gradle-wrapper.properties
+

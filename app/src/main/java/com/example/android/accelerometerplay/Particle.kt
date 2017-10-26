@@ -21,7 +21,6 @@ class Particle(context: Context) : View(context) {
         val ax = -sx / 5
         val ay = -sy / 5
 
-        x.dec()
         posX += mVelX * dT + ax * dT * dT / 2
         posY += mVelY * dT + ay * dT * dT / 2
 
@@ -35,7 +34,11 @@ class Particle(context: Context) : View(context) {
      * constrained particle in such way that the constraint is
      * satisfied.
      */
-    fun resolveCollisionWithBounds(xMax: Float, yMax: Float) {
+    fun resolveCollisionWithBounds() {
+
+        val xMax = SimulationView.mHorizontalBound//0.031000065f
+        val yMax = SimulationView.mVerticalBound//0.053403694f
+
         val xx = posX
         val yy = posY
 
