@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.example.android.accelerometerplay"
-        minSdkVersion 11
-        targetSdkVersion 23
+        minSdkVersion 16
+        targetSdkVersion 28
     }
 
     buildTypes {
